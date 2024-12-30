@@ -1,58 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>CyberBookNook</title>
+    <meta charset="UTF-8">
+    <title>Cyber Book Nook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Inline CSS for Retro Red and White Theme -->
     <style>
       body {
-        font-family: 'Arial', sans-serif;
-        margin: 40px;
-        background-color: #f4f4f9;
-      }
-      h1 {
+        font-family: 'Verdana', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
         color: #333;
       }
+
+      .container {
+        max-width: 960px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        background-color: #990000;
+        color: white;
+        text-align: center;
+        padding: 30px 0;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 2.8em;
+        font-family: 'Georgia', serif;
+      }
+
+      .header p {
+        font-size: 1.2em;
+        margin: 5px 0;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
         margin: 20px 0;
-      }
-      th, td {
-        padding: 10px;
         border: 1px solid #ddd;
-        text-align: left;
       }
+
+      th, td {
+        padding: 15px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+
       th {
-        background-color: #666;
+        background-color: #990000;
+        color: white;
+        text-transform: uppercase;
+      }
+
+      .footer {
+        background-color: #990000;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 40px;
+        font-size: 0.9em;
+        width: 100%;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.9em;
+        margin: 5px;
+      }
+
+      .btn-primary {
+        background-color: #990000;
         color: white;
       }
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
+
+      .btn-danger {
+        background-color: #660000;
+        color: white;
       }
-      a {
-        color: #3498db;
-        text-decoration: none;
+
+      .btn-warning {
+        background-color: #ffcc00;
+        color: black;
       }
-      a:hover {
-        text-decoration: underline;
+
+      .btn:hover {
+        opacity: 0.9;
       }
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        background: white;
-        padding: 20px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
       }
     </style>
 
-    <%= stylesheet_link_tag "application", media: "all" %>
+    <!-- JavaScript Imports -->
     <%= javascript_importmap_tags %>
+    <script type="module">
+      import "application";
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <%= turbo_include_tags %> 
   </head>
+
   <body>
-    <div class="container">
+    <header class="header">
+      <div class="container">
+        <h1>Cyber Book Nook</h1>
+        <p>Your portal to classic cyberpunk literature</p>
+      </div>
+    </header>
+
+    <main class="container">
       <%= yield %>
-    </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 Cyber Book Nook | All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
