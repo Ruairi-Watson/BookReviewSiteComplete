@@ -11,43 +11,33 @@
     <!-- Bootstrap CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Inline CSS for Retro Red and White Theme -->
+    <!-- Inline CSS to Remove White Box and Fix Layout -->
     <style>
-      body {
-        font-family: 'Verdana', sans-serif;
+      body, html {
         margin: 0;
         padding: 0;
-        background-color: #fff;
-        color: #333;
+        height: 100%;
       }
 
-      .container {
-        max-width: 960px;
-        margin: 40px auto;
-        padding: 20px;
-        background-color: white;
-        border: 1px solid #ddd;
-        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .header {
+      .header, .footer {
         background-color: #990000;
         color: white;
         text-align: center;
         padding: 30px 0;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        width: 100%;
       }
 
-      .header h1 {
+      .header h1, .footer p {
         margin: 0;
-        font-size: 2.8em;
-        font-family: 'Georgia', serif;
       }
 
-      .header p {
-        font-size: 1.2em;
-        margin: 5px 0;
+      .content {
+        max-width: 960px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
       }
 
       table {
@@ -66,17 +56,6 @@
       th {
         background-color: #990000;
         color: white;
-        text-transform: uppercase;
-      }
-
-      .footer {
-        background-color: #990000;
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        margin-top: 40px;
-        font-size: 0.9em;
-        width: 100%;
       }
 
       .btn {
@@ -126,20 +105,16 @@
 
   <body>
     <header class="header">
-      <div class="container">
-        <h1>Cyber Book Nook</h1>
-        <p>Your portal to classic cyberpunk literature</p>
-      </div>
+      <h1>Cyber Book Nook</h1>
+      <p>Your portal to classic cyberpunk literature</p>
     </header>
 
-    <main class="container">
+    <main class="content">
       <%= yield %>
     </main>
 
     <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 Cyber Book Nook | All rights reserved.</p>
-      </div>
+      <p>&copy; 2024 Cyber Book Nook | All rights reserved.</p>
     </footer>
   </body>
 </html>
