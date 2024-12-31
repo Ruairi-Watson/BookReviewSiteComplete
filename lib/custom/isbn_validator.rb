@@ -1,25 +1,26 @@
 module Custom
-  class IsbnValidator
-    # Validates 10 or 13 digit ISBN
-    def self.valid?(isbn)
-      isbn = isbn.delete('-').strip
-      return false unless isbn.match?(/^\d{10}$|^\d{13}$/)
-
-      isbn.length == 10 ? valid_isbn10?(isbn) : valid_isbn13?(isbn)
+  class IsbnValidator < ActiveModel::Validator
+    def validate(record)
+      unless valid_isbn?(record.isbn)
+        record.errors.add(:isbn, "is not a valid ISBN")
+      end
     end
 
     private
 
-    def self.valid_isbn10?(isbn)
-      sum = 0
-      isbn.chars.each_with_index { |char, index| sum += (index + 1) * char.to_i }
-      sum % 11 == 0
-    end
+    def valid_isbn?(isbn)
+      return false if isbn.blank?
 
-    def self.valid_isbn13?(isbn)
-      sum = 0
-      isbn.chars.each_with_index { |char, index| sum += index.even? ? char.to_i : char.to_i * 3 }
-      sum % 10 == 0
+      digits = isbn.gsub(/[^0-9X]/i, '').chars
+      return false unless [10, 13].include?(digits.size)
+
+      if digits.size == 10
+        sum = digits.each_with_index.sum { |d, i| (d == 'X' ? 10 : d.to_i) * (10 - i) }
+        sum % 11 == 0
+      else
+        sum = digits.each_with_index.sum { |d, i| i.even? ? d.to_i : d.to_i * 3 }
+        sum % 10 == 0
+      end
     end
   end
 end
