@@ -36,7 +36,7 @@
         margin: 40px auto;
         padding: 30px;
         background-color: white;
-        border: 1px solid #ddd;  
+        border: 1px solid #ddd;
       }
 
       table {
@@ -47,7 +47,7 @@
       }
 
       th, td {
-        padding: 20px;  /* Increased padding */
+        padding: 20px;
         border: 1px solid #ccc;
         text-align: center;
       }
@@ -59,7 +59,7 @@
 
       .btn {
         display: inline-block;
-        padding: 10px 20px;  /* Larger button padding */
+        padding: 10px 20px;
         text-decoration: none;
         border-radius: 6px;
         font-size: 1em;
@@ -84,7 +84,24 @@
       .action-buttons {
         display: flex;
         justify-content: center;
-        gap: 15px;  /* Adds more space between buttons */
+        gap: 15px;
+      }
+
+      .alert, .notice {
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .alert {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      .notice {
+        background-color: #d4edda;
+        color: #155724;
       }
     </style>
 
@@ -105,6 +122,14 @@
     </header>
 
     <main class="content">
+      <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="alert"><%= flash[:alert] %></div>
+      <% end %>
+
       <%= yield %>
     </main>
 
